@@ -215,24 +215,27 @@ def write_reports(run: Path, cfg: dict, rows: list[dict], summ: list[dict]) -> N
     chart = svg_curves(rows, slo, "p95 time to first token vs delivered throughput")
     body = "\n".join(md)
     # minimal Markdown to HTML for this report's own constructs
-    html_lines, in_table = [], False
+    html_lines, in_table, in_list = [], False, False
     for line in body.splitlines():
         esc = html.escape(line)
         esc = esc.replace("**Headline.**", "<strong>Headline.</strong>")
         import re
         esc = re.sub(r"`([^`]*)`", r"<code>\1</code>", esc)
+        if in_list and not line.startswith("- "):
+            html_lines.append("</ul>")
+            in_list = False
         if line.startswith("|"):
             cells = [c.strip() for c in esc.strip("|").split("|")]
             if set(line.replace("|", "").strip()) <= {"-"}:
                 continue
             tag = "th" if not in_table else "td"
             if not in_table:
-                html_lines.append("<table>")
+                html_lines.append('<div class="tablewrap" role="region" aria-label="Results table" tabindex="0"><table>')
                 in_table = True
             html_lines.append("<tr>" + "".join(f"<{tag}>{c}</{tag}>" for c in cells) + "</tr>")
             continue
         if in_table:
-            html_lines.append("</table>")
+            html_lines.append("</table></div>")
             in_table = False
         if line.startswith("# "):
             html_lines.append(f"<h1>{esc[2:]}</h1>")
@@ -241,22 +244,28 @@ def write_reports(run: Path, cfg: dict, rows: list[dict], summ: list[dict]) -> N
             if line.startswith("## Results"):
                 html_lines.append(chart)
         elif line.startswith("- "):
+            if not in_list:
+                html_lines.append("<ul>")
+                in_list = True
             html_lines.append(f"<li>{esc[2:]}</li>")
         elif line.strip():
             html_lines.append(f"<p>{esc}</p>")
     if in_table:
-        html_lines.append("</table>")
+        html_lines.append("</table></div>")
+    if in_list:
+        html_lines.append("</ul>")
     css = """
 :root{--bg:#fff;--fg:#1a1f2b;--mut:#5b6474;--line:#e3e7ee;--acc:#2a6fdb;--code:#f3f5f9}
 @media (prefers-color-scheme:dark){:root{--bg:#11151c;--fg:#e6e9ef;--mut:#9aa3b2;--line:#2a313d;--acc:#6ea0ff;--code:#1b212b}}
 body{background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;max-width:900px;margin:32px auto;padding:0 16px}
 h1{font-size:24px;margin:0 0 12px}h2{font-size:18px;margin:28px 0 8px;border-bottom:1px solid var(--line);padding-bottom:4px}
-table{border-collapse:collapse;width:100%;font-size:13px;display:block;overflow-x:auto}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;white-space:nowrap}
+.tablewrap{overflow-x:auto}.tablewrap:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;white-space:nowrap}
 th{color:var(--mut);font-weight:600}code{background:var(--code);padding:1px 4px;border-radius:4px;font-size:12.5px}
 li{margin:4px 0}.chart{width:100%;height:auto;margin:8px 0 4px}.chart .ax{stroke:var(--mut)}.chart .slo{stroke:#d94f4f;stroke-dasharray:4 3}
 .chart text{fill:var(--mut);font-size:11px}.chart .ct{font-size:13px;fill:var(--fg)}.chart .sl{fill:#d94f4f}
 """
-    (run / "report.html").write_text(f"<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>"
+    (run / "report.html").write_text(f"<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>"
                                      f"<title>{html.escape(head)}</title><style>{css}</style></head><body>{''.join(html_lines)}</body></html>")
 
 
