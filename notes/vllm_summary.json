@@ -1,0 +1,65 @@
+[
+ {
+  "repo": "vllm-project/vllm",
+  "tag": "v0.25.0",
+  "date": "2026-07-11",
+  "perf_lines": 37,
+  "retune_triggers": 3
+ },
+ {
+  "repo": "vllm-project/vllm",
+  "tag": "v0.25.1",
+  "date": "2026-07-14",
+  "perf_lines": 1,
+  "retune_triggers": 0
+ },
+ {
+  "repo": "vllm-project/vllm",
+  "tag": "v0.26.0",
+  "date": "2026-07-27",
+  "perf_lines": 36,
+  "retune_triggers": 3
+ },
+ {
+  "repo": "vllm-project/vllm",
+  "tag": "v0.27.0",
+  "date": "2026-08-10",
+  "perf_lines": 40,
+  "retune_triggers": 5
+ },
+ {
+  "repo": "vllm-project/vllm",
+  "tag": "v0.27.1",
+  "date": "2026-08-11",
+  "perf_lines": 1,
+  "retune_triggers": 0
+ },
+ {
+  "repo": "vllm-project/vllm",
+  "tag": "v0.28.0",
+  "date": "2026-08-26",
+  "perf_lines": 40,
+  "retune_triggers": 3
+ },
+ {
+  "repo": "vllm-project/vllm",
+  "tag": "v0.29.0",
+  "date": "2026-09-09",
+  "perf_lines": 46,
+  "retune_triggers": 7
+ },
+ {
+  "repo": "vllm-project/vllm",
+  "tag": "v0.30.0",
+  "date": "2026-09-22",
+  "perf_lines": 53,
+  "retune_triggers": 5
+ },
+ {
+  "repo": "vllm-project/vllm",
+  "tag": "v0.31.0",
+  "date": "2026-10-05",
+  "perf_lines": 55,
+  "retune_triggers": 9
+ }
+]

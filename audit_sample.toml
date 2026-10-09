@@ -1,0 +1,73 @@
+# Sample audit: an agent/RAG-style workload on one H100, used to produce the public sample report.
+# Synthetic traffic; a client audit replays their own trace instead.
+baseline = "baseline"
+
+[engine]
+name = "vllm"
+version = "0.31.x"
+model = "Qwen/Qwen3-8B"
+baseline_flags = "--max-model-len 16384 --gpu-memory-utilization 0.90"
+port = 8000
+startup_timeout_s = 1200
+
+[hardware]
+gpu = "H100 80GB"
+usd_per_gpu_hour = 2.69        # RunPod community H100 SXM on-demand rate paid for this run (2026-10-08)
+gpus_per_replica = 1
+
+[workload]
+input_len = 3000               # long agent/RAG prompts
+output_len = 300
+range_ratio = 0.5
+shared_prefix_len = 2000       # system prompt + tool schema shared by every request
+num_prompts = 200
+request_rates = [3, 4.5, 5.5, 6.5, 8, 10, 0]   # 0 = all at once (saturation)
+seed = 7
+bench_timeout_s = 1500
+
+[slo]
+ttft_p95_ms = 1500
+tpot_p95_ms = 50
+
+[client]
+peak_requests_per_s = 40
+
+[report]
+title = "Sample inference cost audit: Qwen3-8B, agent-style traffic, 1x H100"
+notes = [
+  "Random synthetic tokens defeat n-gram and draft models, so this run leaves speculative decoding out. A client audit tests it on replayed traffic.",
+]
+
+[[candidates]]
+name = "baseline"
+flags = ""
+why = "vLLM defaults (prefix caching and chunked prefill are already on in the V1 engine)."
+
+[[candidates]]
+name = "no_prefix_cache"
+flags = "--no-enable-prefix-caching"
+why = "Shows the cost of running with prefix caching off, a setting that still appears in older configs and some gateways."
+
+[[candidates]]
+name = "batched_16k"
+flags = "--max-num-batched-tokens 16384"
+why = "Larger prefill budget per step. It trades decode smoothness for prefill throughput."
+
+[[candidates]]
+name = "fp8_kv"
+flags = "--kv-cache-dtype fp8"
+why = "Halves KV cache memory, so more concurrent sequences fit."
+
+[[candidates]]
+name = "fp8_model"
+model = "Qwen/Qwen3-8B-FP8"
+flags = ""
+env = { VLLM_USE_DEEP_GEMM = "0" }   # DeepGEMM needs NVCC 12.9; the default image ships 12.8
+why = "Official FP8 checkpoint, with lower weight memory and faster GEMMs on Hopper."
+
+[[candidates]]
+name = "fp8_model_kv_16k"
+model = "Qwen/Qwen3-8B-FP8"
+flags = "--kv-cache-dtype fp8 --max-num-batched-tokens 16384"
+env = { VLLM_USE_DEEP_GEMM = "0" }
+why = "All three changes above together."

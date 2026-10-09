@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+pod/logs/
+runs/*
+!runs/sample_h100_final/
+.venv/

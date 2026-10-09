@@ -1,0 +1,240 @@
+[
+ {
+  "name": "chat, plain replies",
+  "rows": [
+   {
+    "turn": 1,
+    "prompt_tokens": 474,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 474
+   },
+   {
+    "turn": 2,
+    "prompt_tokens": 514,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 514
+   },
+   {
+    "turn": 3,
+    "prompt_tokens": 553,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 553
+   },
+   {
+    "turn": 4,
+    "prompt_tokens": 591,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 591
+   }
+  ],
+  "error": null
+ },
+ {
+  "name": "chat, reasoning replies kept with <think>",
+  "rows": [
+   {
+    "turn": 1,
+    "prompt_tokens": 474,
+    "prev_kept": 1.0,
+    "out_kept": 0.0,
+    "first_diff_at": 474
+   },
+   {
+    "turn": 2,
+    "prompt_tokens": 514,
+    "prev_kept": 1.0,
+    "out_kept": 0.0,
+    "first_diff_at": 514
+   },
+   {
+    "turn": 3,
+    "prompt_tokens": 553,
+    "prev_kept": 1.0,
+    "out_kept": 0.0,
+    "first_diff_at": 553
+   },
+   {
+    "turn": 4,
+    "prompt_tokens": 591,
+    "prev_kept": 1.0,
+    "out_kept": 0.0,
+    "first_diff_at": 591
+   }
+  ],
+  "error": null
+ },
+ {
+  "name": "chat, reasoning model, client drops <think> from history",
+  "rows": [
+   {
+    "turn": 1,
+    "prompt_tokens": 474,
+    "prev_kept": 1.0,
+    "out_kept": 0.0,
+    "first_diff_at": 474
+   },
+   {
+    "turn": 2,
+    "prompt_tokens": 514,
+    "prev_kept": 1.0,
+    "out_kept": 0.0,
+    "first_diff_at": 514
+   },
+   {
+    "turn": 3,
+    "prompt_tokens": 553,
+    "prev_kept": 1.0,
+    "out_kept": 0.0,
+    "first_diff_at": 553
+   },
+   {
+    "turn": 4,
+    "prompt_tokens": 591,
+    "prev_kept": 1.0,
+    "out_kept": 0.0,
+    "first_diff_at": 591
+   }
+  ],
+  "error": null
+ },
+ {
+  "name": "chat with tools and a tool call",
+  "rows": [
+   {
+    "turn": 1,
+    "prompt_tokens": 617,
+    "prev_kept": 1.0,
+    "out_kept": 0.0,
+    "first_diff_at": 617
+   },
+   {
+    "turn": 2,
+    "prompt_tokens": 703,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 703
+   },
+   {
+    "turn": 3,
+    "prompt_tokens": 742,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 742
+   },
+   {
+    "turn": 4,
+    "prompt_tokens": 780,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 780
+   }
+  ],
+  "error": null
+ },
+ {
+  "name": "chat, system reminder inserted mid-conversation",
+  "rows": [
+   {
+    "turn": 1,
+    "prompt_tokens": 474,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 474
+   },
+   {
+    "turn": 2,
+    "prompt_tokens": 514,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 514
+   },
+   {
+    "turn": 3,
+    "prompt_tokens": 566,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 566
+   },
+   {
+    "turn": 4,
+    "prompt_tokens": 604,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 604
+   }
+  ],
+  "error": null
+ },
+ {
+  "name": "Anthropic /v1/messages, fixed system",
+  "rows": [
+   {
+    "turn": 1,
+    "prompt_tokens": 474,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 474
+   },
+   {
+    "turn": 2,
+    "prompt_tokens": 514,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 514
+   },
+   {
+    "turn": 3,
+    "prompt_tokens": 553,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 553
+   },
+   {
+    "turn": 4,
+    "prompt_tokens": 591,
+    "prev_kept": 1.0,
+    "out_kept": 1.0,
+    "first_diff_at": 591
+   }
+  ],
+  "error": null
+ },
+ {
+  "name": "Anthropic /v1/messages, timestamp in system prompt",
+  "rows": [
+   {
+    "turn": 1,
+    "prompt_tokens": 499,
+    "prev_kept": 0.04408817635270541,
+    "out_kept": 0.0,
+    "first_diff_at": 22
+   },
+   {
+    "turn": 2,
+    "prompt_tokens": 539,
+    "prev_kept": 0.04081632653061224,
+    "out_kept": 0.0,
+    "first_diff_at": 22
+   },
+   {
+    "turn": 3,
+    "prompt_tokens": 578,
+    "prev_kept": 0.03806228373702422,
+    "out_kept": 0.0,
+    "first_diff_at": 22
+   },
+   {
+    "turn": 4,
+    "prompt_tokens": 616,
+    "prev_kept": 0.03571428571428571,
+    "out_kept": 0.0,
+    "first_diff_at": 22
+   }
+  ],
+  "error": null
+ }
+]

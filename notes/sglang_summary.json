@@ -1,0 +1,58 @@
+[
+ {
+  "repo": "sgl-project/sglang",
+  "tag": "v0.5.15",
+  "date": "2026-07-10",
+  "perf_lines": 103,
+  "retune_triggers": 7
+ },
+ {
+  "repo": "sgl-project/sglang",
+  "tag": "v0.5.15.post1",
+  "date": "2026-07-14",
+  "perf_lines": 3,
+  "retune_triggers": 0
+ },
+ {
+  "repo": "sgl-project/sglang",
+  "tag": "v0.5.16",
+  "date": "2026-07-25",
+  "perf_lines": 91,
+  "retune_triggers": 4
+ },
+ {
+  "repo": "sgl-project/sglang",
+  "tag": "v0.5.17",
+  "date": "2026-08-08",
+  "perf_lines": 188,
+  "retune_triggers": 3
+ },
+ {
+  "repo": "sgl-project/sglang",
+  "tag": "v0.5.18",
+  "date": "2026-08-22",
+  "perf_lines": 152,
+  "retune_triggers": 3
+ },
+ {
+  "repo": "sgl-project/sglang",
+  "tag": "v0.5.19",
+  "date": "2026-09-05",
+  "perf_lines": 169,
+  "retune_triggers": 32
+ },
+ {
+  "repo": "sgl-project/sglang",
+  "tag": "v0.5.20",
+  "date": "2026-09-18",
+  "perf_lines": 238,
+  "retune_triggers": 37
+ },
+ {
+  "repo": "sgl-project/sglang",
+  "tag": "v0.5.21",
+  "date": "2026-10-02",
+  "perf_lines": 250,
+  "retune_triggers": 19
+ }
+]
